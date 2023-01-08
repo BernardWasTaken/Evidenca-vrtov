@@ -5,31 +5,16 @@ public class App {
         try{
             Addons.ConnectionInit();
 
-            GUI gui = new GUI();
+            GUI_login gui = new GUI_login();
         }catch(Exception e)
         {
             System.out.println(e.getMessage());
         }
 
         try {
-        Statement stmt = Addons.connect.createStatement();
-
-        // Execute a query
-        ResultSet rs = stmt.executeQuery("SELECT * FROM Vrti");
-
-        // Iterate through the results
-        while (rs.next()) {
-            // Retrieve data from each column
-            int id = rs.getInt("id");
-            String naslov = rs.getString("naslov");
-            System.out.println(id);
-            System.out.println(naslov);
-            // etc.
-        }
-
-        // Close the connection
-        Addons.connect.close();
-        } catch (SQLException e) {
+        Addons.GetAll();
+        } 
+        catch (Exception e) {
         System.out.println(e.getMessage());
         }
     }

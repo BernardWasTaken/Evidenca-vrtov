@@ -19,7 +19,7 @@ public class GUI_login extends JFrame implements ActionListener{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("Zivalski vrt");
         frame.setLayout(null);
-        frame.setPreferredSize(new Dimension(1000, 600));
+        frame.setPreferredSize(new Dimension(500, 300));
         frame.setResizable(false);
 
         JTextField username_field = new JTextField();
@@ -27,21 +27,40 @@ public class GUI_login extends JFrame implements ActionListener{
 
         username_field.setSize(250, 50);
         username_field.setText("username");
-        username_field.setLocation(500, 0);
+        username_field.setLocation(125, 0);
+        username_field.setBorder(null);
+        username_field.setHorizontalAlignment(JTextField.CENTER);
         frame.add(username_field);
 
         password_field.setSize(250, 50);
         password_field.setText("password");
         password_field.setEchoChar('*');
-        password_field.setLocation(500, 51);
+        password_field.setLocation(125, 51);
+        password_field.setBorder(null);
+        password_field.setHorizontalAlignment(JPasswordField.CENTER);
         frame.add(password_field);
 
         JButton login_btn = new JButton();
         login_btn.setText("login");
         login_btn.setSize(250, 50);
-        login_btn.setLocation(500, 102);
+        login_btn.setLocation(125, 102);
+        login_btn.setBorderPainted(false);
         frame.add(login_btn);
 
+        if(Addons.getDarkMode() == 1)
+        {
+          login_btn.setBackground(Color.darkGray);
+          login_btn.setForeground(Color.WHITE);
+
+          username_field.setBackground(Color.darkGray);
+          username_field.setForeground(Color.WHITE);
+
+          password_field.setBackground(Color.darkGray);
+          password_field.setForeground(Color.WHITE);
+
+          frame.getContentPane().setBackground(new Color(118, 118, 118));
+        }
+        
         login_btn.addActionListener(new ActionListener() {
 
           @Override
@@ -54,11 +73,10 @@ public class GUI_login extends JFrame implements ActionListener{
               }
               else
               {
-                System.out.println("Username or password is incorrect!");
+                frame.add(new JLabel("narobe"));
               }
           }
       });
-
         frame.pack();
         frame.setVisible(true);
       }

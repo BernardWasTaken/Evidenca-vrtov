@@ -1,4 +1,6 @@
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Addons {
     static Connection connect = null;
@@ -71,5 +73,118 @@ public class Addons {
             }
 
         return temp;
+    }
+
+    public static int getDarkMode()
+    {
+        int temp = 0;
+        try {
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            ResultSet rst = stmt.executeQuery("SELECT * FROM getDarkMode()");
+    
+            // Iterate through the results
+            if(rst.next())
+            {
+                if(rst.getInt(1) == 1)
+                {
+                    temp = 1;
+                }
+                else
+                {
+                    temp = 0;
+                }
+            }
+    
+            // Close the connection
+            } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+
+        return temp;
+    }
+
+    public static void changeTheme()
+    {
+        try {
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            ResultSet rst = stmt.executeQuery("SELECT changeTheme()");
+    
+            // Close the connection
+            } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+    }
+
+    public static List<String> getVrti()
+    {
+        List<String> ret = new ArrayList<String>();
+
+        try {
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            ResultSet rst = stmt.executeQuery("SELECT * FROM getVrti()");
+            
+            while(rst.next())
+            {
+                ret.add(rst.getString(1));
+            }
+
+            // Close the connection
+            } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+
+        return ret;
+    }
+
+    public static int getMaxIdVrti()
+    {
+        int max = 0;
+
+        try {
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            ResultSet rst = stmt.executeQuery("SELECT * FROM getMaxIdVrti()");
+            
+            while(rst.next())
+            {
+                max = rst.getInt(1);
+            }
+
+            // Close the connection
+            } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+
+        return max;
+    }
+
+    public static String getVrtiList(int i)
+    {
+        String ret = "";
+
+        try {
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            ResultSet rst = stmt.executeQuery("SELECT * FROM getVrtiList("+i+")");
+            
+            while(rst.next())
+            {
+                ret = rst.getString(1);
+            }
+
+            // Close the connection
+            } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            }
+
+        return ret;
     }
 }

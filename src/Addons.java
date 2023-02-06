@@ -312,6 +312,19 @@ public class Addons {
         }
     }
 
+    public static void insertRegister(String ime, String priimek, String geslo, String spol, String vrt)
+    {
+        try {
+
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            stmt.executeUpdate("SELECT insertRegister('"+ime+"', '"+priimek+"', '"+geslo+"', '"+spol+"', '"+vrt+"')");
+        } catch (Exception e) {
+            System.out.println("insertRegister():: " + e.getMessage());
+        }
+    }
+
     public static int getAllZaposleni(String vrt)
     {
         int temp = 0;

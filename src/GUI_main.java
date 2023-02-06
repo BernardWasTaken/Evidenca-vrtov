@@ -128,6 +128,7 @@ public class GUI_main extends JFrame implements ActionListener {
         vrt_box.setSize(250, 50);
         vrt_box.setLocation((int)(username_field.getLocation().getX() + username_field.getSize().getWidth() + 10), (int)username_field.getLocation().getY());
         vrt_box.setBorder(null);
+        vrt_box.addItem("--filler--");
         vrt_box.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -160,9 +161,9 @@ public class GUI_main extends JFrame implements ActionListener {
                 try {
                     
                     List<String> formated = new ArrayList<>();
-                    if(!model.isEmpty())
+                    if(zaposleni_list.getModel().getSize() != 0)
                     {
-                        formated = Arrays.asList(model.get(zaposleni_list.getSelectedIndex()).split(" ")); 
+                        formated = Arrays.asList(((String)zaposleni_list.getSelectedItem()).split(" ")); 
                     }
 
                     Addons.updateUser(
@@ -275,29 +276,29 @@ public class GUI_main extends JFrame implements ActionListener {
         zaposleni_list.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent arg0)
-            {
-                    List<String> formated = new ArrayList<>();
-                    if(!model.isEmpty())
+            {       
+                    if(zaposleni_list.getModel().getSize() != 0)
                     {
-                        formated = Arrays.asList(((String) zaposleni_list.getSelectedItem()).split(" ")); 
-                    }
+                        List<String> formated = new ArrayList<>();
+                        formated = Arrays.asList(((String)zaposleni_list.getSelectedItem()).split(" "));
 
-                    if(!formated.isEmpty())
-                    {
-                        name_field.setText(formated.get(0));
-                        surname_field.setText(formated.get(1));
-                        username_field.setText(Addons.getUsername(name_field.getText(), surname_field.getText()));
-                        password_field.setText(Addons.getGeslo(name_field.getText(), surname_field.getText()));
-                        spol_field.setText(Addons.getSpol(name_field.getText(), surname_field.getText()));
-                        vrt_box.setSelectedItem(Addons.getVrt(name_field.getText(), surname_field.getText()));
+                        if(!formated.isEmpty())
+                        {
+                            name_field.setText(formated.get(0));
+                            surname_field.setText(formated.get(1));
+                            username_field.setText(Addons.getUsername(name_field.getText(), surname_field.getText()));
+                            password_field.setText(Addons.getGeslo(name_field.getText(), surname_field.getText()));
+                            spol_field.setText(Addons.getSpol(name_field.getText(), surname_field.getText()));
+                            vrt_box.setSelectedItem(Addons.getVrt(name_field.getText(), surname_field.getText()));
 
-                        name_field.setEnabled(false);
-                        surname_field.setEnabled(false);
-                        username_field.setEnabled(false);
-                        password_field.setEnabled(false);
-                        spol_field.setEnabled(false);
-                        vrt_box.setEnabled(false);
-                        save_btn.setEnabled(false);
+                            name_field.setEnabled(false);
+                            surname_field.setEnabled(false);
+                            username_field.setEnabled(false);
+                            password_field.setEnabled(false);
+                            spol_field.setEnabled(false);
+                            vrt_box.setEnabled(false);
+                            save_btn.setEnabled(false);
+                        }
                     }
             }
         });
@@ -306,7 +307,7 @@ public class GUI_main extends JFrame implements ActionListener {
 
 
         DefaultListModel<String> model_zivali = new DefaultListModel<>();
-        JList<String> zivali_list = new JList<>(model_zivali);
+        JComboBox<String> zivali_list = new JComboBox<>();
         zivali_list.setSize(300, 290);
         zivali_list.setLocation((int)(password_field.getLocation().getX() + password_field.getSize().getWidth() + 200), (int)(password_field.getLocation().getY()));
         zivali_list.setBackground(Color.WHITE);
@@ -347,32 +348,30 @@ public class GUI_main extends JFrame implements ActionListener {
         box.setSize(new Dimension(250, 50));
         box.setLocation((int)Addons.screenSize.getWidth()/2 - (int)box.getSize().getWidth()/2, (int)(setting_btn.getLocation().getY() + setting_btn.getSize().getHeight() + 30));
         box.setBorder(null);
-        box.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e)
-            {
-                
-            }
-        });
         box.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e)
             {
                 try {
-                    model.clear();
-                    model_zivali.clear();
+                    if(zaposleni_list.getModel().getSize() != 0)
+                    {
+                        zaposleni_list.removeAllItems();
+                    }
+                    if(zivali_list.getModel().getSize() != 0)
+                    {
+                        zivali_list.removeAllItems();
+                    }
+                    
                     name_field.setText(null);
                     surname_field.setText(null);
                     username_field.setText(null);
                     password_field.setText(null);
                     spol_field.setText(null);
-                    vrt_box.removeAll();
                     name_field_zivali.setText(null);
                     vrsta_field.setText(null);
-                    Object selected = null;
-                    selected = box.getSelectedItem();
+                    Object selected = box.getSelectedItem();
                         for (int j = 0; j < (Addons.getZaposleni((String)selected)).size(); j=j+2) {
-                            System.out.println(Addons.getAllZaposleni((String)selected));
                             if(Addons.getZaposleni((String)selected).get(j) != null && Addons.getZaposleni((String)selected).get(j+1) != null)
                             {
                                 Object added = Addons.getZaposleni((String)selected).get(j)+" "+Addons.getZaposleni((String)selected).get(j+1);
@@ -382,7 +381,7 @@ public class GUI_main extends JFrame implements ActionListener {
                         for (int i = 0; i < (Addons.getZivali((String)selected)).size(); i=i+2) {
                             if(Addons.getZivali((String)selected).get(i) != null && Addons.getZivali((String)selected).get(i+1) != null)
                             {
-                                model_zivali.addElement(Addons.getZivali((String)selected).get(i)+" "+Addons.getZivali((String)selected).get(i+1));
+                                zivali_list.addItem(Addons.getZivali((String)selected).get(i)+" "+Addons.getZivali((String)selected).get(i+1));
                             }
                         }
                     
@@ -392,7 +391,6 @@ public class GUI_main extends JFrame implements ActionListener {
                         kraj_field_vrt.setText(Addons.getKraj((String)box.getSelectedItem()));
                     
                     System.out.println(selected);
-                    zivali_list.setModel(model_zivali);
                     name_field.setEnabled(false);
                     surname_field.setEnabled(false);
                     username_field.setEnabled(false);
@@ -416,11 +414,11 @@ public class GUI_main extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e)
             {
                 try {
-                    
-                    Addons.updateVrt((String)box.getSelectedItem() ,name_field_vrt.getText(), naslov_field_vrt.getText(), kraj_field_vrt.getText());
+
+                    Addons.updateVrt((String)vrt_box.getSelectedItem() ,name_field_vrt.getText(), naslov_field_vrt.getText(), kraj_field_vrt.getText());
 
                 } catch (Exception ex) {
-                    System.out.println("save_btn action listener:: "+ex.getMessage());
+                    System.out.println("save_vrt_btn action listener:: "+ex.getMessage());
                 }
             }
         });
@@ -453,6 +451,7 @@ public class GUI_main extends JFrame implements ActionListener {
             }
         });
 
+        ogrozena_box.addItem("--filler--");
         ogrozena_box.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e)
@@ -484,15 +483,15 @@ public class GUI_main extends JFrame implements ActionListener {
                 try {
                     
                     List<String> formated = new ArrayList<>();
-                    if(!model_zivali.isEmpty())
+                    if(zivali_list.getModel().getSize() != 0)
                     {
-                        formated = Arrays.asList(model_zivali.get(zivali_list.getSelectedIndex()).split(" ")); 
+                        formated = Arrays.asList(((String)zivali_list.getSelectedItem()).split(" ")); 
                     }
 
                     Addons.updateZival(formated.get(0), name_field_zivali.getText(), vrsta_field.getText(), ogrozena_box.getSelectedIndex());
 
                 } catch (Exception ex) {
-                    System.out.println("save_btn action listener:: "+ex.getMessage());
+                    System.out.println("save_zivali_btn action listener:: "+ex.getMessage());
                 }
             }
         });
@@ -522,17 +521,15 @@ public class GUI_main extends JFrame implements ActionListener {
             }
         });
 
-        zivali_list.addListSelectionListener(new ListSelectionListener() {
+        zivali_list.addActionListener(new ActionListener() {
             @Override
-            public void valueChanged(ListSelectionEvent arg0)
+            public void actionPerformed(ActionEvent arg0)
             {
                     
-
+                if(zivali_list.getModel().getSize() != 0)
+                {
                     List<String> formated = new ArrayList<>();
-                    if(!model_zivali.isEmpty())
-                    {
-                        formated = Arrays.asList(model_zivali.get(zivali_list.getSelectedIndex()).split(" ")); 
-                    }
+                    formated = Arrays.asList(((String) zivali_list.getSelectedItem()).split(" ")); 
 
                     if(Addons.getOgrozena(name_field_zivali.getText()) == 1)
                     {
@@ -553,6 +550,7 @@ public class GUI_main extends JFrame implements ActionListener {
                         ogrozena_box.setEnabled(false);
                         save_zivali_btn.setEnabled(false);
                     }
+                }
             }
         });
 

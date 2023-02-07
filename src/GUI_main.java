@@ -45,33 +45,9 @@ public class GUI_main extends JFrame implements ActionListener {
         setting_btn.setBackground(Color.WHITE);
         setting_btn.setBorderPainted(false);
         setting_btn.setVisible(true);
-
-        if(Addons.getDarkMode() == 1)
-        {
-            setting_btn.setForeground(Color.WHITE);
-            setting_btn.setBackground(new Color(118, 118, 118));
-            frame.getContentPane().setBackground(new Color(118, 118, 118));
-        }
-        setting_btn.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    GUI_settings gui_settings = new GUI_settings();
-                    frame.dispose();
-                } catch (Exception ex) {
-                    System.out.println("setting_btn action listener:: "+ex.getMessage());
-                }
-            }
-        });
+        frame.add(setting_btn);
 
         String test = GUI_login.logged;
-
-        if(test.equals("admin"))
-        {
-            System.out.println("zaznan admin");
-            frame.add(setting_btn);
-        }
 
         DefaultListModel<String> model = new DefaultListModel<>();
         JComboBox<String> zaposleni_list = new JComboBox<>();
@@ -343,7 +319,10 @@ public class GUI_main extends JFrame implements ActionListener {
         
         JComboBox<String> box = new JComboBox<String>();
         for (int i = 1; i <= Addons.getMaxIdVrti(); i++) {
-            box.addItem(Addons.getVrtiList(i));
+            if(Addons.getVrtiList(i) != null)
+            {
+                box.addItem(Addons.getVrtiList(i));
+            }
         }
         box.setSize(Addons.objectSize());
         box.setLocation((int)Addons.screenSize.getWidth()/2 - (int)box.getSize().getWidth()/2, (int)(setting_btn.getLocation().getY() + setting_btn.getSize().getHeight() + 30));
@@ -543,12 +522,123 @@ public class GUI_main extends JFrame implements ActionListener {
         frame.add(zivali_label);
 
 
+        if(test.equals("admin"))
+        {
+            System.out.println("zaznan admin");
+            
+            setting_btn.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        GUI_settings gui_settings = new GUI_settings();
+                        frame.dispose();
+                    } catch (Exception ex) {
+                        System.out.println("setting_btn action listener:: "+ex.getMessage());
+                    }
+                }
+            });
+        }
+
+        if(!test.equals("admin"))
+        {
+            setting_btn.setText("Logout");
+            save_btn.setVisible(false);
+            save_vrt_btn.setVisible(false);
+            save_zivali_btn.setVisible(false);
+            unlock_btn.setVisible(false);
+            unlock_vrt_btn.setVisible(false);
+            unlock_zivali_btn.setVisible(false);
+
+            setting_btn.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        GUI_login login = new GUI_login();
+                        frame.dispose();
+                    } catch (Exception ex) {
+                        System.out.println("setting_btn action listener:: "+ex.getMessage());
+                    }
+                }
+            });
+        }
+
+
 
         if(Addons.getDarkMode() == 1)
         {
             box.setForeground(Color.WHITE);
             box.setBackground(Color.darkGray);
             box.getEditor().getEditorComponent().setBackground(Color.darkGray);
+
+            setting_btn.setForeground(Color.WHITE);
+            setting_btn.setBackground(new Color(118, 118, 118));
+
+            name_field_vrt.setForeground(Color.WHITE);
+            name_field_vrt.setBackground(Color.darkGray);
+
+            naslov_field_vrt.setForeground(Color.WHITE);
+            naslov_field_vrt.setBackground(Color.darkGray);
+
+            kraj_field_vrt.setForeground(Color.WHITE);
+            kraj_field_vrt.setBackground(Color.darkGray);
+
+            save_vrt_btn.setForeground(Color.WHITE);
+            save_vrt_btn.setBackground(Color.darkGray);
+
+            unlock_vrt_btn.setForeground(Color.WHITE);
+            unlock_vrt_btn.setBackground(Color.darkGray);
+
+            zaposleni_list.setForeground(Color.WHITE);
+            zaposleni_list.setBackground(Color.darkGray);
+
+            name_field.setForeground(Color.WHITE);
+            name_field.setBackground(Color.darkGray);
+
+            surname_field.setForeground(Color.WHITE);
+            surname_field.setBackground(Color.darkGray);
+
+            unlock_vrt_btn.setForeground(Color.WHITE);
+            unlock_vrt_btn.setBackground(Color.darkGray);
+
+            username_field.setForeground(Color.WHITE);
+            username_field.setBackground(Color.darkGray);
+
+            save_btn.setForeground(Color.WHITE);
+            save_btn.setBackground(Color.darkGray);
+
+            password_field.setForeground(Color.WHITE);
+            password_field.setBackground(Color.darkGray);
+            
+            spol_field.setForeground(Color.WHITE);
+            spol_field.setBackground(Color.darkGray);
+
+            vrt_box.setForeground(Color.WHITE);
+            vrt_box.setBackground(Color.darkGray);
+
+            unlock_btn.setForeground(Color.WHITE);
+            unlock_btn.setBackground(Color.darkGray);
+
+            zivali_list.setForeground(Color.WHITE);
+            zivali_list.setBackground(Color.darkGray);
+
+            name_field_zivali.setForeground(Color.WHITE);
+            name_field_zivali.setBackground(Color.darkGray);
+
+            vrsta_field.setForeground(Color.WHITE);
+            vrsta_field.setBackground(Color.darkGray);
+
+            ogrozena_box.setForeground(Color.WHITE);
+            ogrozena_box.setBackground(Color.darkGray);
+
+            unlock_zivali_btn.setForeground(Color.WHITE);
+            unlock_zivali_btn.setBackground(Color.darkGray);
+
+            save_zivali_btn.setForeground(Color.WHITE);
+            save_zivali_btn.setBackground(Color.darkGray);
+
+            frame.getContentPane().setBackground(new Color(118, 118, 118));
         }
         frame.add(box);
 

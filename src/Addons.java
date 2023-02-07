@@ -3,8 +3,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import java.awt.Dimension;
-
+import java.security.MessageDigest;
 import java.awt.*;
+
+import javax.xml.*;
 
 public class Addons {
     static Connection connect = null;
@@ -95,6 +97,56 @@ public class Addons {
     
             // Execute a query
             ResultSet rst = stmt.executeQuery("SELECT * FROM getZivali('"+vrt+"')");
+    
+            // Iterate through the results
+            while(rst.next())
+            {
+                ret.add(rst.getString(1));
+                ret.add(rst.getString(2));
+            }
+    
+            // Close the connection
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+
+        return ret;
+    }
+
+    public static List<String> getZaposleniAll()
+    {
+        List<String> ret = new ArrayList<String>();
+
+        try {
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            ResultSet rst = stmt.executeQuery("SELECT * FROM getZaposleniAll()");
+    
+            // Iterate through the results
+            while(rst.next())
+            {
+                ret.add(rst.getString(1));
+                ret.add(rst.getString(2));
+            }
+    
+            // Close the connection
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+
+        return ret;
+    }
+
+    public static List<String> getZivaliAll()
+    {
+        List<String> ret = new ArrayList<String>();
+
+        try {
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            ResultSet rst = stmt.executeQuery("SELECT * FROM getZivaliAll()");
     
             // Iterate through the results
             while(rst.next())
@@ -247,6 +299,85 @@ public class Addons {
             stmt.executeUpdate("SELECT updateUser('"+ori_ime+"', '"+ori_priimek+"', '"+imee+"', '"+prii+"', '"+uporabnisko+"', '"+ges+"', '"+spoll+"', '"+vrtt+"')");
         } catch (Exception e) {
             System.out.println("getVrt():: " + e.getMessage());
+        }
+    }
+
+    public static void deleteVrt(String imee)
+    {
+        try {
+
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            stmt.executeUpdate("SELECT deleteVrt('"+imee+"')");
+        } catch (Exception e) {
+            System.out.println("deleteVrt():: " + e.getMessage());
+        }
+    }
+
+    public static void deleteZaposleni(String imee, String priimekk)
+    {
+        try {
+
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            stmt.executeUpdate("SELECT deleteZaposleni('"+getUsername(imee, priimekk)+"')");
+        } catch (Exception e) {
+            System.out.println("deleteZaposleni():: " + e.getMessage());
+        }
+    }
+
+    public static void deleteZival(String imee)
+    {
+        try {
+
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            stmt.executeUpdate("SELECT deleteZival('"+imee+"')");
+        } catch (Exception e) {
+            System.out.println("deleteZival():: " + e.getMessage());
+        }
+    }
+
+    public static String myHash(String original)
+    {
+        String hashed = "";
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(original.getBytes());
+            byte[] digest = md.digest();
+            hashed = ""+digest;
+        } catch (Exception e) {
+            System.out.println("myHash():: "+e.getMessage());
+        }
+        return hashed;
+    }
+
+    public static void insertZival(String imee, String vrstaa, int ogrozenaa)
+    {
+        try {
+
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            stmt.executeUpdate("SELECT insertZival('"+imee+"', '"+vrstaa+"', "+ogrozenaa+")");
+        } catch (Exception e) {
+            System.out.println("insertZival():: " + e.getMessage());
+        }
+    }
+
+    public static void insertVrt(String imee, String naslovv, String krajj)
+    {
+        try {
+
+            Statement stmt = Addons.connect.createStatement();
+    
+            // Execute a query
+            stmt.executeUpdate("SELECT insertVrt('"+imee+"', '"+naslovv+"', '"+krajj+"')");
+        } catch (Exception e) {
+            System.out.println("insertVrt():: " + e.getMessage());
         }
     }
 

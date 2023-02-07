@@ -11,6 +11,16 @@ public class Addons {
 
     public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
+    public static Dimension objectSize()
+    {
+        Dimension ret = new Dimension();
+
+        ret.height = (int)(screenSize.getHeight()/22); //8
+        ret.width = (int)(screenSize.getWidth()/8); //22
+
+        return ret;
+    }
+
     public static void OutPut()
     {
         System.out.println("outoutout");

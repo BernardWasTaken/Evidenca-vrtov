@@ -32,14 +32,14 @@ public class GUI_login extends JFrame implements ActionListener{
         JTextField username_field = new JTextField();
         JPasswordField password_field = new JPasswordField();
 
-        username_field.setSize(250, 50);
+        username_field.setSize(Addons.objectSize());
         username_field.setText("username");
         username_field.setLocation((Addons.screenSize.width / 2) - (username_field.getSize().width/2), (Addons.screenSize.height / 2) - (username_field.getSize().height*2));
         username_field.setBorder(null);
         username_field.setHorizontalAlignment(JTextField.CENTER);
         frame.add(username_field);
 
-        password_field.setSize(250, 50);
+        password_field.setSize(Addons.objectSize());
         password_field.setText("password");
         password_field.setEchoChar('*');
         password_field.setLocation((Addons.screenSize.width / 2) - (password_field.getSize().width/2), (Addons.screenSize.height / 2) - (password_field.getSize().height/2));
@@ -49,7 +49,7 @@ public class GUI_login extends JFrame implements ActionListener{
 
         JButton login_btn = new JButton();
         login_btn.setText("login");
-        login_btn.setSize(250, 50);
+        login_btn.setSize(Addons.objectSize());
         login_btn.setLocation((Addons.screenSize.width / 2) - (username_field.getSize().width/2), (Addons.screenSize.height / 2) + (username_field.getSize().height));
         login_btn.setBorderPainted(false);
         frame.add(login_btn);

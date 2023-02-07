@@ -73,15 +73,15 @@ public class GUI_settings extends JFrame implements ActionListener {
 
 
         JTextField name_register_field = new JTextField();
-        name_register_field.setSize(250, 50);
+        name_register_field.setSize(Addons.objectSize());
         name_register_field.setText("novo ime");
-        name_register_field.setLocation((int)(Addons.screenSize.getWidth() - name_register_field.getSize().getWidth()*2 - 20), 20);
+        name_register_field.setLocation((int)(changetheme_btn.getLocation().getX() + changetheme_btn.getSize().getWidth() + 40), (int)(changetheme_btn.getLocation().getY()));
         name_register_field.setBorder(null);
         name_register_field.setHorizontalAlignment(JTextField.CENTER);
         frame.add(name_register_field);
 
         JTextField priimek_register_field = new JTextField();
-        priimek_register_field.setSize(250, 50);
+        priimek_register_field.setSize(Addons.objectSize());
         priimek_register_field.setText("nov priimek");
         priimek_register_field.setLocation((int)(name_register_field.getLocation().getX()), (int)(name_register_field.getLocation().getY() + name_register_field.getSize().getHeight() + 10));
         priimek_register_field.setBorder(null);
@@ -89,7 +89,7 @@ public class GUI_settings extends JFrame implements ActionListener {
         frame.add(priimek_register_field);
 
         JTextField spol_register_field = new JTextField();
-        spol_register_field.setSize(250, 50);
+        spol_register_field.setSize(Addons.objectSize());
         spol_register_field.setText("nov spol");
         spol_register_field.setLocation((int)(name_register_field.getLocation().getX()), (int)(priimek_register_field.getLocation().getY() + priimek_register_field.getSize().getHeight() + 10));
         spol_register_field.setBorder(null);
@@ -97,7 +97,7 @@ public class GUI_settings extends JFrame implements ActionListener {
         frame.add(spol_register_field);
 
         JTextField geslo_register_field = new JTextField();
-        geslo_register_field.setSize(250, 50);
+        geslo_register_field.setSize(Addons.objectSize());
         geslo_register_field.setText("novo geslo");
         geslo_register_field.setLocation((int)(name_register_field.getLocation().getX() + geslo_register_field.getSize().getWidth() + 10), (int)(name_register_field.getLocation().getY()));
         geslo_register_field.setBorder(null);
@@ -105,7 +105,7 @@ public class GUI_settings extends JFrame implements ActionListener {
         frame.add(geslo_register_field);
 
         JComboBox<String> vrti_box = new JComboBox<>();
-        vrti_box.setSize(250, 50);
+        vrti_box.setSize(Addons.objectSize());
         vrti_box.setLocation((int)(geslo_register_field.getLocation().getX()), (int)(geslo_register_field.getLocation().getY() + vrti_box.getSize().getHeight() + 10));
         vrti_box.setBackground(Color.WHITE);
         vrti_box.setVisible(true);
@@ -115,7 +115,7 @@ public class GUI_settings extends JFrame implements ActionListener {
         frame.add(vrti_box);
 
         JButton save_register_btn = new JButton("Register");
-        save_register_btn.setSize(100, 50);
+        save_register_btn.setSize((int)(Addons.objectSize().getWidth()/2 - 5), (int)(Addons.objectSize().getHeight()));
         save_register_btn.setLocation((int)(vrti_box.getLocation().getX()), (int)(vrti_box.getLocation().getY() + vrti_box.getSize().getHeight() + 10));
         save_register_btn.setBorderPainted(false);
         frame.add(save_register_btn);
@@ -168,6 +168,26 @@ public class GUI_settings extends JFrame implements ActionListener {
                     }
                 } catch (Exception ex) {
                     System.out.println("save_register_btn:: "+ex.getMessage());
+                }
+            }
+        });
+
+        JButton clear_register_btn = new JButton("Clear");
+        clear_register_btn.setSize((int)(Addons.objectSize().getWidth()/2 - 5), (int)(Addons.objectSize().getHeight()));
+        clear_register_btn.setLocation((int)(save_register_btn.getLocation().getX() + save_register_btn.getSize().getWidth() + 10), (int)(save_register_btn.getLocation().getY()));
+        clear_register_btn.setBorderPainted(false);
+        frame.add(clear_register_btn);
+
+        clear_register_btn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    name_register_field.setText("");
+                    priimek_register_field.setText("");
+                    spol_register_field.setText("");
+                    geslo_register_field.setText("");
+                } catch (Exception ex) {
+                    System.out.println("clear_register_btn:: "+ex.getMessage());
                 }
             }
         });

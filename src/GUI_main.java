@@ -75,14 +75,14 @@ public class GUI_main extends JFrame implements ActionListener {
 
         DefaultListModel<String> model = new DefaultListModel<>();
         JComboBox<String> zaposleni_list = new JComboBox<>();
-        zaposleni_list.setSize(300, 290);
+        zaposleni_list.setSize(Addons.objectSize());
         zaposleni_list.setLocation(150, 400);
         zaposleni_list.setBackground(Color.WHITE);
         zaposleni_list.setVisible(true);
         frame.add(zaposleni_list);
 
         JTextField name_field = new JTextField();
-        name_field.setSize(250, 50);
+        name_field.setSize(Addons.objectSize());
         name_field.setLocation((int)(zaposleni_list.getLocation().getX() + zaposleni_list.getSize().getWidth() + 10), (int)zaposleni_list.getLocation().getY());
         name_field.setBorder(null);
         name_field.setHorizontalAlignment(JTextField.CENTER);
@@ -90,7 +90,7 @@ public class GUI_main extends JFrame implements ActionListener {
         frame.add(name_field);
 
         JTextField surname_field = new JTextField();
-        surname_field.setSize(250, 50);
+        surname_field.setSize(Addons.objectSize());
         surname_field.setLocation((int)name_field.getLocation().getX(), (int)(name_field.getLocation().getY() + name_field.getSize().getHeight() + 10));
         surname_field.setBorder(null);
         surname_field.setHorizontalAlignment(JTextField.CENTER);
@@ -98,7 +98,7 @@ public class GUI_main extends JFrame implements ActionListener {
         frame.add(surname_field);
 
         JTextField username_field = new JTextField();
-        username_field.setSize(250, 50);
+        username_field.setSize(Addons.objectSize());
         username_field.setLocation((int)surname_field.getLocation().getX(), (int)(surname_field.getLocation().getY() + surname_field.getSize().getHeight() + 10));
         username_field.setBorder(null);
         username_field.setHorizontalAlignment(JTextField.CENTER);
@@ -106,7 +106,7 @@ public class GUI_main extends JFrame implements ActionListener {
         frame.add(username_field);
 
         JTextField password_field = new JTextField();
-        password_field.setSize(250, 50);
+        password_field.setSize(Addons.objectSize());
         password_field.setLocation((int)(name_field.getLocation().getX() + name_field.getSize().getWidth() + 10), (int)name_field.getLocation().getY());
         password_field.setBorder(null);
         password_field.setHorizontalAlignment(JTextField.CENTER);
@@ -114,7 +114,7 @@ public class GUI_main extends JFrame implements ActionListener {
         frame.add(password_field);
 
         JTextField spol_field = new JTextField();
-        spol_field.setSize(250, 50);
+        spol_field.setSize(Addons.objectSize());
         spol_field.setLocation((int)(surname_field.getLocation().getX() + surname_field.getSize().getWidth() + 10), (int)surname_field.getLocation().getY());
         spol_field.setBorder(null);
         spol_field.setHorizontalAlignment(JTextField.CENTER);
@@ -125,7 +125,7 @@ public class GUI_main extends JFrame implements ActionListener {
         for (int i = 1; i <= Addons.getMaxIdVrti(); i++) {
             vrt_box.addItem(Addons.getVrtiList(i));
         }
-        vrt_box.setSize(250, 50);
+        vrt_box.setSize(Addons.objectSize());
         vrt_box.setLocation((int)(username_field.getLocation().getX() + username_field.getSize().getWidth() + 10), (int)username_field.getLocation().getY());
         vrt_box.setBorder(null);
         vrt_box.addItem("--filler--");
@@ -146,7 +146,7 @@ public class GUI_main extends JFrame implements ActionListener {
         frame.add(vrt_box);
 
         JButton save_btn = new JButton("Save");
-        save_btn.setSize(250, 50);
+        save_btn.setSize(Addons.objectSize());
         save_btn.setLocation((int)username_field.getLocation().getX(), (int)(username_field.getLocation().getY() + username_field.getSize().getHeight() + 10));
         save_btn.setBackground(Color.WHITE);
         save_btn.setBorderPainted(false);
@@ -184,7 +184,7 @@ public class GUI_main extends JFrame implements ActionListener {
         });
 
         JButton unlock_btn = new JButton("Unlock");
-        unlock_btn.setSize(250, 50);
+        unlock_btn.setSize(Addons.objectSize());
         unlock_btn.setLocation((int)vrt_box.getLocation().getX(), (int)(vrt_box.getLocation().getY() + vrt_box.getSize().getHeight() + 10));
         unlock_btn.setBackground(Color.WHITE);
         unlock_btn.setBorderPainted(false);
@@ -216,7 +216,7 @@ public class GUI_main extends JFrame implements ActionListener {
 
 
         JTextField name_field_vrt = new JTextField();
-        name_field_vrt.setSize(250, 50);
+        name_field_vrt.setSize(Addons.objectSize());
         name_field_vrt.setLocation((int)(Addons.screenSize.getWidth()/2 - name_field.getSize().getWidth() - name_field.getSize().getWidth()/2 - 10), (int)(setting_btn.getLocation().getY() + 150));
         name_field_vrt.setBorder(null);
         name_field_vrt.setHorizontalAlignment(JTextField.CENTER);
@@ -224,7 +224,7 @@ public class GUI_main extends JFrame implements ActionListener {
         frame.add(name_field_vrt);
 
         JTextField naslov_field_vrt = new JTextField();
-        naslov_field_vrt.setSize(250, 50);
+        naslov_field_vrt.setSize(Addons.objectSize());
         naslov_field_vrt.setLocation((int)(name_field_vrt.getLocation().getX() + name_field_vrt.getSize().getWidth() + 10), (int)(name_field_vrt.getLocation().getY()));
         naslov_field_vrt.setBorder(null);
         naslov_field_vrt.setHorizontalAlignment(JTextField.CENTER);
@@ -232,7 +232,7 @@ public class GUI_main extends JFrame implements ActionListener {
         frame.add(naslov_field_vrt);
 
         JTextField kraj_field_vrt = new JTextField();
-        kraj_field_vrt.setSize(250, 50);
+        kraj_field_vrt.setSize(Addons.objectSize());
         kraj_field_vrt.setLocation((int)(naslov_field_vrt.getLocation().getX() + naslov_field_vrt.getSize().getWidth() + 10), (int)(naslov_field_vrt.getLocation().getY()));
         kraj_field_vrt.setBorder(null);
         kraj_field_vrt.setHorizontalAlignment(JTextField.CENTER);
@@ -240,7 +240,7 @@ public class GUI_main extends JFrame implements ActionListener {
         frame.add(kraj_field_vrt);
 
         JButton save_vrt_btn = new JButton("Save");
-        save_vrt_btn.setSize(250, 50);
+        save_vrt_btn.setSize(Addons.objectSize());
         save_vrt_btn.setLocation((int)(naslov_field_vrt.getLocation().getX() - save_vrt_btn.getSize().getWidth()/2 - 5), (int)(naslov_field_vrt.getLocation().getY() + naslov_field_vrt.getSize().getHeight() + 10));
         save_vrt_btn.setBackground(Color.WHITE);
         save_vrt_btn.setBorderPainted(false);
@@ -249,7 +249,7 @@ public class GUI_main extends JFrame implements ActionListener {
         frame.add(save_vrt_btn);
 
         JButton unlock_vrt_btn = new JButton("Unlock");
-        unlock_vrt_btn.setSize(250, 50);
+        unlock_vrt_btn.setSize(Addons.objectSize());
         unlock_vrt_btn.setLocation((int)(save_vrt_btn.getLocation().getX() + unlock_vrt_btn.getSize().getWidth() + 10), (int)(save_vrt_btn.getLocation().getY()));
         unlock_vrt_btn.setBackground(Color.WHITE);
         unlock_vrt_btn.setBorderPainted(false);
@@ -308,14 +308,14 @@ public class GUI_main extends JFrame implements ActionListener {
 
         DefaultListModel<String> model_zivali = new DefaultListModel<>();
         JComboBox<String> zivali_list = new JComboBox<>();
-        zivali_list.setSize(300, 290);
+        zivali_list.setSize(Addons.objectSize());
         zivali_list.setLocation((int)(password_field.getLocation().getX() + password_field.getSize().getWidth() + 200), (int)(password_field.getLocation().getY()));
         zivali_list.setBackground(Color.WHITE);
         zivali_list.setVisible(true);
         frame.add(zivali_list);
 
         JTextField name_field_zivali = new JTextField();
-        name_field_zivali.setSize(250, 50);
+        name_field_zivali.setSize(Addons.objectSize());
         name_field_zivali.setLocation((int)(zivali_list.getLocation().getX() + zivali_list.getSize().getWidth() + 10), (int)zivali_list.getLocation().getY());
         name_field_zivali.setBorder(null);
         name_field_zivali.setHorizontalAlignment(JTextField.CENTER);
@@ -323,7 +323,7 @@ public class GUI_main extends JFrame implements ActionListener {
         frame.add(name_field_zivali);
 
         JTextField vrsta_field = new JTextField();
-        vrsta_field.setSize(250, 50);
+        vrsta_field.setSize(Addons.objectSize());
         vrsta_field.setLocation((int)name_field_zivali.getLocation().getX(), (int)(name_field_zivali.getLocation().getY() + name_field_zivali.getSize().getHeight() + 10));
         vrsta_field.setBorder(null);
         vrsta_field.setHorizontalAlignment(JTextField.CENTER);
@@ -333,7 +333,7 @@ public class GUI_main extends JFrame implements ActionListener {
         JComboBox<String> ogrozena_box = new JComboBox<String>();
         ogrozena_box.addItem("0");
         ogrozena_box.addItem("1");
-        ogrozena_box.setSize(250, 50);
+        ogrozena_box.setSize(Addons.objectSize());
         ogrozena_box.setLocation((int)(vrsta_field.getLocation().getX()), (int)(vrsta_field.getLocation().getY() + vrsta_field.getSize().getHeight() + 10));
         ogrozena_box.setBorder(null);
 
@@ -345,7 +345,7 @@ public class GUI_main extends JFrame implements ActionListener {
         for (int i = 1; i <= Addons.getMaxIdVrti(); i++) {
             box.addItem(Addons.getVrtiList(i));
         }
-        box.setSize(new Dimension(250, 50));
+        box.setSize(Addons.objectSize());
         box.setLocation((int)Addons.screenSize.getWidth()/2 - (int)box.getSize().getWidth()/2, (int)(setting_btn.getLocation().getY() + setting_btn.getSize().getHeight() + 30));
         box.setBorder(null);
         box.addActionListener(new ActionListener() {
@@ -431,26 +431,6 @@ public class GUI_main extends JFrame implements ActionListener {
         zaposleni_label.setForeground(Color.WHITE);
         frame.add(zaposleni_label);
 
-        JButton clear_btn = new JButton("Clear");
-        clear_btn.setSize(100, 50);
-        clear_btn.setLocation((int)(username_field.getLocation().getX() + username_field.getSize().getWidth()) + 10, (int)(username_field.getLocation().getY()));
-        clear_btn.setBorderPainted(false);
-        clear_btn.setVisible(true);
-        frame.add(clear_btn);
-        clear_btn.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-                try {
-                    model.removeAllElements();
-                    name_field.setText(null);
-                    surname_field.setText(null);
-                    username_field.setText(null);
-                } catch (Exception ex) {
-                    System.out.println("clear button action listener:: "+ex.getMessage());
-                }   
-            }
-        });
-
         ogrozena_box.addItem("--filler--");
         ogrozena_box.addActionListener(new ActionListener() {
             @Override
@@ -468,7 +448,7 @@ public class GUI_main extends JFrame implements ActionListener {
         frame.add(ogrozena_box);
 
         JButton save_zivali_btn = new JButton("Save");
-        save_zivali_btn.setSize(250, 50);
+        save_zivali_btn.setSize(Addons.objectSize());
         save_zivali_btn.setLocation((int)ogrozena_box.getLocation().getX(), (int)(ogrozena_box.getLocation().getY() + ogrozena_box.getSize().getHeight()*2 + 20));
         save_zivali_btn.setBackground(Color.WHITE);
         save_zivali_btn.setBorderPainted(false);
@@ -497,7 +477,7 @@ public class GUI_main extends JFrame implements ActionListener {
         });
 
         JButton unlock_zivali_btn = new JButton("Unlock");
-        unlock_zivali_btn.setSize(250, 50);
+        unlock_zivali_btn.setSize(Addons.objectSize());
         unlock_zivali_btn.setLocation((int)ogrozena_box.getLocation().getX(), (int)(ogrozena_box.getLocation().getY() + ogrozena_box.getSize().getHeight() + 10));
         unlock_zivali_btn.setBackground(Color.WHITE);
         unlock_zivali_btn.setBorderPainted(false);
